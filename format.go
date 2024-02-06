@@ -188,7 +188,9 @@ func buildFormatInfo(e error) *formatInfo {
 		if extMsg == "" {
 			extMsg = err.err.Error()
 		}
-
+		if err.err.Error() != "" {
+			extMsg = err.err.Error()
+		}
 		finfo = &formatInfo{
 			code:    coder.Code(),
 			message: extMsg,

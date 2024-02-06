@@ -334,3 +334,10 @@ func TestParseCoder(t *testing.T) {
 	}
 
 }
+
+func TestWithCode2(t *testing.T) {
+	err := WithCode(404, "not found")
+	fmt.Println(err.Error())
+	err1 := WithCode(404, "")
+	fmt.Println(err1.Error())
+}
