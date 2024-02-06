@@ -1,4 +1,4 @@
-PKGS := github.com/marmotedu/errors
+PKGS := github.com/joyZF/errors
 SRCDIRS := $(shell go list -f '{{.Dir}}' $(PKGS))
 GO := go
 
