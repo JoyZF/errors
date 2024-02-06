@@ -42,3 +42,22 @@ errcheck:
 gofmt:
 	@echo Checking code is gofmted
 	@test -z "$(shell gofmt -s -l -d -e $(SRCDIRS) | tee /dev/stderr)"
+
+
+list-tags:
+	@echo "Listing Git project history tags:"
+	@git tag -l
+
+push-tag:
+	@if [ -z "$(TAG)" ]; then \
+		echo "Error: Please provide a TAG parameter. Example: make push-tag TAG=v1.0.0"; \
+	else \
+		echo "Pushing new tag $(TAG) with message: $(MESSAGE)"; \
+		git tag -a $(TAG) -m "$(MESSAGE)"; \
+		git push origin $(TAG); \
+	fi
+
+release: list-tags
+	@read -p "Enter the new tag: " TAG; \
+	read -p "Enter the tag message: " MESSAGE; \
+	make push-tag TAG=$$TAG MESSAGE="$$MESSAGE"
